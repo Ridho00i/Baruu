@@ -9,15 +9,7 @@
       background: black;
       overflow: hidden;
     }
-
-    #warning {
-      color: white;
-      text-align: center;
-      font-size: 2em;
-      padding-top: 40vh;
-      font-family: Arial, sans-serif;
-    }
-
+    
     #scareVideo {
       display: none;
       position: fixed;
@@ -35,7 +27,6 @@
   </style>
 </head>
 <body>
-  <div id="warning">Tunggu sebentar...</div>
 
   <!-- Video jumpscare -->
   <video id="scareVideo" src="jumpscare.mp4" preload="auto"></video>
@@ -46,11 +37,9 @@
   <script>
     const scareVideo = document.getElementById('scareVideo');
     const screamAudio = document.getElementById('screamAudio');
-    const warning = document.getElementById('warning');
 
     // Delay sebelum jumpscare muncul (5 detik)
     setTimeout(() => {
-      warning.style.display = 'none';
       scareVideo.style.display = 'block';
 
       // Set volume maksimum (jika diizinkan browser)
