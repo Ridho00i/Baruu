@@ -1,58 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Jumpscare!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Selamat Datang</title>
   <style>
-    body {
+    * {
       margin: 0;
-      background: black;
-      overflow: hidden;
-    }
-    
-    #scareVideo {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 9999;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
     }
 
-    #screamAudio {
-      display: none;
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .container {
+      animation: fadeIn 2s ease;
+    }
+
+    h1 {
+      font-size: 3rem;
+      background: linear-gradient(90deg, #00c9ff, #92fe9d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: slideIn 1.2s ease;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-top: 15px;
+      color: #ccc;
+      animation: fadeIn 2.5s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
     }
   </style>
 </head>
 <body>
-
-  <!-- Video jumpscare -->
-  <video id="scareVideo" src="jumpscare.mp4" preload="auto"></video>
-
-  <!-- Efek suara jumpscare -->
-  <audio id="screamAudio" src="scream.mp3" preload="auto"></audio>
-
-  <script>
-    const scareVideo = document.getElementById('scareVideo');
-    const screamAudio = document.getElementById('screamAudio');
-
-    // Delay sebelum jumpscare muncul (5 detik)
-    setTimeout(() => {
-      scareVideo.style.display = 'block';
-
-      // Set volume maksimum (jika diizinkan browser)
-      screamAudio.volume = 1.0;
-
-      // Mainkan video dan suara bersamaan
-      scareVideo.play();
-      screamAudio.play();
-
-      // Coba fullscreen otomatis
-      if (scareVideo.requestFullscreen) {
-        scareVideo.requestFullscreen();
-      };
-  </script>
+  <div class="container">
+    <h1>Halo, Dunia!</h1>
+    <p>Ini adalah halaman HTML simple tapi keren banget 🎉</p>
+  </div>
 </body>
 </html>
