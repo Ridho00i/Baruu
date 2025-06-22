@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Selamat Datang</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Produk Digital | Jualan Modern</title>
   <style>
     * {
       margin: 0;
@@ -13,60 +13,101 @@
     }
 
     body {
-      height: 100vh;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      overflow: hidden;
+      background: #f4f4f4;
+      color: #333;
+      padding: 20px;
     }
 
     .container {
-      animation: fadeIn 2s ease;
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      overflow: hidden;
     }
 
-    h1 {
-      font-size: 3rem;
-      background: linear-gradient(90deg, #00c9ff, #92fe9d);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: slideIn 1.2s ease;
+    .hero {
+      background: linear-gradient(135deg, #4f46e5, #3b82f6);
+      color: white;
+      padding: 40px 30px;
+      text-align: center;
     }
 
-    p {
-      font-size: 1.2rem;
-      margin-top: 15px;
-      color: #ccc;
-      animation: fadeIn 2.5s ease;
+    .hero h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
     }
 
-    @keyframes slideIn {
-      from {
-        transform: translateY(-50px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
+    .hero p {
+      font-size: 18px;
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+    .content {
+      padding: 30px;
+    }
+
+    .product-image {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .price {
+      font-size: 28px;
+      font-weight: bold;
+      margin: 20px 0;
+      color: #3b82f6;
+    }
+
+    .btn-buy {
+      display: inline-block;
+      background: #3b82f6;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn-buy:hover {
+      background: #1e40af;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 14px;
+      padding: 15px;
+      color: #777;
     }
   </style>
 </head>
 <body>
+
   <div class="container">
-    <h1>Halo, Dunia!</h1>
-    <p>Ini adalah halaman HTML simple tapi keren banget 🎉</p>
+    <div class="hero">
+      <h1>Jual Template Website Modern</h1>
+      <p>Langsung download dan pakai — cocok untuk pemula & profesional.</p>
+    </div>
+
+    <div class="content">
+      <img src="gambar1.jpg" alt="Produk Digital" class="product-image" />
+
+      <p>
+        Template HTML responsif dan mudah disesuaikan. Cocok untuk portofolio, landing page, atau toko online.
+      </p>
+
+      <p class="price">Rp 49.000</p>
+
+      <a href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20membeli%20produk%20digital%20Anda." class="btn-buy">Beli Sekarang</a>
+    </div>
+
+    <div class="footer">
+      © 2025 DigitalStore.ID — Semua Hak Dilindungi.
+    </div>
   </div>
+
 </body>
 </html>
