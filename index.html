@@ -1,113 +1,152 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Produk Digital | Jualan Modern</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Toko Digital - Zation Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Poppins', sans-serif;
     }
 
     body {
-      background: #f4f4f4;
-      color: #333;
-      padding: 20px;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
     }
 
-    .container {
-      max-width: 900px;
-      margin: auto;
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
-      overflow: hidden;
+    /* Loading Screen */
+    #loading {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      animation: fadeOut 2s ease forwards;
+      animation-delay: 1.5s;
     }
 
-    .hero {
-      background: linear-gradient(135deg, #4f46e5, #3b82f6);
-      color: white;
-      padding: 40px 30px;
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    header {
       text-align: center;
+      padding: 30px 20px;
     }
 
-    .hero h1 {
-      font-size: 36px;
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #fff;
+      margin-bottom: 15px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+
+    h1 {
+      font-size: 28px;
+    }
+
+    p {
+      color: #ccc;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 40px 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 15px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 10px;
       margin-bottom: 10px;
     }
 
-    .hero p {
-      font-size: 18px;
-    }
-
-    .content {
-      padding: 30px;
-    }
-
-    .product-image {
-      width: 100%;
-      max-height: 400px;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-
-    .price {
-      font-size: 28px;
-      font-weight: bold;
-      margin: 20px 0;
-      color: #3b82f6;
-    }
-
-    .btn-buy {
+    .buy-btn {
       display: inline-block;
-      background: #3b82f6;
-      color: white;
-      padding: 15px 25px;
-      border-radius: 10px;
+      margin-top: 10px;
+      padding: 10px 15px;
+      background: #00d2ff;
+      color: #000;
+      border: none;
+      border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
-      transition: 0.3s;
+      transition: background 0.3s ease;
     }
 
-    .btn-buy:hover {
-      background: #1e40af;
+    .buy-btn:hover {
+      background: #2ee59d;
     }
 
-    .footer {
+    footer {
       text-align: center;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
       font-size: 14px;
-      padding: 15px;
-      color: #777;
+      margin-top: 40px;
     }
   </style>
 </head>
 <body>
+  <div id="loading">Memuat Toko Digital...</div>
 
-  <div class="container">
-    <div class="hero">
-      <h1>Jual Template Website Modern</h1>
-      <p>Langsung download dan pakai — cocok untuk pemula & profesional.</p>
+  <header>
+    <img src="gambar1.jpg" alt="Foto Profil" class="profile-img">
+    <h1>Zation Digital Store</h1>
+    <p>Jual eBook, Preset, Template, dan Produk Digital Berkualitas</p>
+  </header>
+
+  <section class="products">
+    <div class="card">
+      <img src="gambar1.jpg" alt="Produk 1">
+      <h3>eBook Panduan Bisnis</h3>
+      <p>Strategi jualan online yang terbukti efektif.</p>
+      <a href="#" class="buy-btn">Beli Sekarang</a>
     </div>
-
-    <div class="content">
-      <img src="gambar1.jpg" alt="Produk Digital" class="product-image" />
-
-      <p>
-        Template HTML responsif dan mudah disesuaikan. Cocok untuk portofolio, landing page, atau toko online.
-      </p>
-
-      <p class="price">Rp 49.000</p>
-
-      <a href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20membeli%20produk%20digital%20Anda." class="btn-buy">Beli Sekarang</a>
+    <div class="card">
+      <img src="gambar1.jpg" alt="Produk 2">
+      <h3>Lightroom Preset</h3>
+      <p>Preset aesthetic untuk feed IG kamu!</p>
+      <a href="#" class="buy-btn">Beli Sekarang</a>
     </div>
-
-    <div class="footer">
-      © 2025 DigitalStore.ID — Semua Hak Dilindungi.
+    <div class="card">
+      <img src="gambar1.jpg" alt="Produk 3">
+      <h3>Template Instagram</h3>
+      <p>Cocok untuk jualan, promosi, dan branding.</p>
+      <a href="#" class="buy-btn">Beli Sekarang</a>
     </div>
-  </div>
+  </section>
 
+  <footer>
+    &copy; 2025 Zation Store. Semua Hak Dilindungi.
+  </footer>
 </body>
 </html>
