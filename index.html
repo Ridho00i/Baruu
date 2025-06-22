@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Zation Digital Store</title>
+  <title>✔️ Zation Digital Store</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     * {
@@ -31,6 +31,7 @@
       font-size: 24px;
       animation: fadeOut 2s ease forwards;
       animation-delay: 1.5s;
+      color: white;
     }
 
     @keyframes fadeOut {
@@ -102,6 +103,8 @@
 
     .card img {
       width: 100%;
+      height: 180px;
+      object-fit: cover;
       border-radius: 10px;
       margin-bottom: 10px;
     }
@@ -135,7 +138,6 @@
       font-size: 14px;
     }
 
-    /* Music Button */
     #musicToggle {
       position: fixed;
       bottom: 20px;
@@ -156,71 +158,77 @@
 <body>
   <div id="loading">Memuat Toko Digital...</div>
 
-  <!-- Musik Latar -->
+  <!-- Musik -->
   <audio id="bg-music" autoplay loop>
-    <source src="https://files.catbox.moe/tfgcnz.mp3" type="audio/mpeg" />
+    <source src="https://files.catbox.moe/tfgcnz.mp3" type="audio/mpeg">
     Browser tidak mendukung audio
   </audio>
-
   <button id="musicToggle">🔊</button>
 
+  <!-- Header -->
   <header>
-    <img src="gambar1.jpg" alt="Foto Profil" class="profile-img" />
+    <img src="https://files.catbox.moe/vlf9nx.jpg" alt="Foto Profil" class="profile-img" />
     <h1>Zation Digital Store</h1>
-    <p>Jual eBook, Preset, Template, dan Produk Digital Berkualitas</p>
+    <p>Jual Produk Digital seperti eBook, Template, dan Preset</p>
   </header>
 
+  <!-- Navigasi -->
   <nav>
     <a href="#produk">Produk</a>
     <a href="#tentang">Tentang</a>
     <a href="#kontak">Kontak</a>
   </nav>
 
+  <!-- Produk -->
   <section id="produk" class="products">
     <div class="card">
-      <img src="gambar1.jpg" alt="eBook" />
-      <h3>eBook Panduan Bisnis</h3>
-      <p>Strategi jualan online yang terbukti efektif.</p>
+      <img src="https://files.catbox.moe/vlf9nx.jpg" alt="eBook" />
+      <h3>eBook Bisnis Online</h3>
+      <p>Strategi sukses jualan digital dari nol.</p>
       <a href="#" class="buy-btn">Beli Sekarang</a>
     </div>
     <div class="card">
-      <img src="gambar1.jpg" alt="Preset" />
+      <img src="https://files.catbox.moe/vlf9nx.jpg" alt="Preset" />
       <h3>Lightroom Preset</h3>
-      <p>Preset aesthetic untuk feed IG kamu!</p>
+      <p>Edit foto instan dengan hasil estetik!</p>
       <a href="#" class="buy-btn">Beli Sekarang</a>
     </div>
     <div class="card">
-      <img src="gambar1.jpg" alt="Template" />
+      <img src="https://files.catbox.moe/vlf9nx.jpg" alt="Template" />
       <h3>Template Instagram</h3>
-      <p>Cocok untuk jualan, promosi, dan branding.</p>
+      <p>Template promosi untuk feed profesional.</p>
       <a href="#" class="buy-btn">Beli Sekarang</a>
     </div>
   </section>
 
+  <!-- Tentang Kami -->
   <section id="tentang">
     <h2 style="text-align:center;">Tentang Kami</h2>
     <p style="text-align:center; color: #ccc; max-width: 600px; margin: 10px auto;">
-      Zation Digital Store adalah toko online terpercaya yang menyediakan berbagai produk digital seperti eBook, preset, dan template desain. Kami berkomitmen memberikan produk terbaik dan layanan cepat!
+      Kami adalah penyedia produk digital terpercaya yang siap membantu Anda sukses secara online. Semua produk kami bisa langsung diunduh dan digunakan!
     </p>
   </section>
 
+  <!-- Kontak -->
   <section id="kontak">
     <h2 style="text-align:center;">Kontak</h2>
     <p style="text-align:center; color: #ccc;">
-      Hubungi kami via WhatsApp: <a href="https://wa.me/6281234567890" target="_blank" style="color:#00d2ff;">Klik di sini</a>
+      Hubungi kami di WhatsApp: <a href="https://wa.me/6281234567890" target="_blank" style="color:#00d2ff;">Klik di sini</a>
     </p>
   </section>
 
+  <!-- Footer -->
   <footer>
     &copy; 2025 Zation Store. Semua Hak Dilindungi.
   </footer>
 
+  <!-- Script Musik -->
   <script>
     const music = document.getElementById("bg-music");
     const toggleBtn = document.getElementById("musicToggle");
     let isPlaying = true;
 
-    toggleBtn.addEventListener("click", function () {
+    toggleBtn.addEventListener("click", () => {
       if (isPlaying) {
         music.pause();
         toggleBtn.textContent = "🔇";
