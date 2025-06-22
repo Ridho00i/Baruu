@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Toko Digital - Zation Store</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zation Digital Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     * {
       margin: 0;
@@ -16,9 +16,9 @@
     body {
       background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
       color: #fff;
+      scroll-behavior: smooth;
     }
 
-    /* Loading Screen */
     #loading {
       position: fixed;
       width: 100%;
@@ -43,6 +43,12 @@
     header {
       text-align: center;
       padding: 30px 20px;
+      animation: fadeIn 2s ease;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
     }
 
     .profile-img {
@@ -55,12 +61,23 @@
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
     }
 
-    h1 {
-      font-size: 28px;
+    h1 { font-size: 28px; }
+    p { color: #ccc; }
+
+    nav {
+      text-align: center;
+      margin: 20px 0;
     }
 
-    p {
-      color: #ccc;
+    nav a {
+      color: #00d2ff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #2ee59d;
     }
 
     .products {
@@ -74,8 +91,8 @@
       background: rgba(255, 255, 255, 0.1);
       padding: 20px;
       border-radius: 15px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
       backdrop-filter: blur(10px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .card:hover {
@@ -106,47 +123,113 @@
       background: #2ee59d;
     }
 
+    section {
+      padding: 40px 20px;
+      animation: fadeIn 2s ease;
+    }
+
     footer {
       text-align: center;
       padding: 20px;
       background: rgba(255, 255, 255, 0.05);
       font-size: 14px;
-      margin-top: 40px;
+    }
+
+    /* Music Button */
+    #musicToggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #00d2ff;
+      color: #000;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #00d2ff;
+      z-index: 1000;
     }
   </style>
 </head>
 <body>
   <div id="loading">Memuat Toko Digital...</div>
 
+  <!-- Musik Latar -->
+  <audio id="bg-music" autoplay loop>
+    <source src="https://files.catbox.moe/tfgcnz.mp3" type="audio/mpeg" />
+    Browser tidak mendukung audio
+  </audio>
+
+  <button id="musicToggle">🔊</button>
+
   <header>
-    <img src="gambar1.jpg" alt="Foto Profil" class="profile-img">
+    <img src="gambar1.jpg" alt="Foto Profil" class="profile-img" />
     <h1>Zation Digital Store</h1>
     <p>Jual eBook, Preset, Template, dan Produk Digital Berkualitas</p>
   </header>
 
-  <section class="products">
+  <nav>
+    <a href="#produk">Produk</a>
+    <a href="#tentang">Tentang</a>
+    <a href="#kontak">Kontak</a>
+  </nav>
+
+  <section id="produk" class="products">
     <div class="card">
-      <img src="gambar1.jpg" alt="eBook">
+      <img src="gambar1.jpg" alt="eBook" />
       <h3>eBook Panduan Bisnis</h3>
       <p>Strategi jualan online yang terbukti efektif.</p>
       <a href="#" class="buy-btn">Beli Sekarang</a>
     </div>
     <div class="card">
-      <img src="gambar1.jpg" alt="Preset Lightroom">
+      <img src="gambar1.jpg" alt="Preset" />
       <h3>Lightroom Preset</h3>
       <p>Preset aesthetic untuk feed IG kamu!</p>
       <a href="#" class="buy-btn">Beli Sekarang</a>
     </div>
     <div class="card">
-      <img src="gambar1.jpg" alt="Template Instagram">
+      <img src="gambar1.jpg" alt="Template" />
       <h3>Template Instagram</h3>
       <p>Cocok untuk jualan, promosi, dan branding.</p>
       <a href="#" class="buy-btn">Beli Sekarang</a>
     </div>
   </section>
 
+  <section id="tentang">
+    <h2 style="text-align:center;">Tentang Kami</h2>
+    <p style="text-align:center; color: #ccc; max-width: 600px; margin: 10px auto;">
+      Zation Digital Store adalah toko online terpercaya yang menyediakan berbagai produk digital seperti eBook, preset, dan template desain. Kami berkomitmen memberikan produk terbaik dan layanan cepat!
+    </p>
+  </section>
+
+  <section id="kontak">
+    <h2 style="text-align:center;">Kontak</h2>
+    <p style="text-align:center; color: #ccc;">
+      Hubungi kami via WhatsApp: <a href="https://wa.me/6281234567890" target="_blank" style="color:#00d2ff;">Klik di sini</a>
+    </p>
+  </section>
+
   <footer>
     &copy; 2025 Zation Store. Semua Hak Dilindungi.
   </footer>
+
+  <script>
+    const music = document.getElementById("bg-music");
+    const toggleBtn = document.getElementById("musicToggle");
+    let isPlaying = true;
+
+    toggleBtn.addEventListener("click", function () {
+      if (isPlaying) {
+        music.pause();
+        toggleBtn.textContent = "🔇";
+      } else {
+        music.play();
+        toggleBtn.textContent = "🔊";
+      }
+      isPlaying = !isPlaying;
+    });
+  </script>
 </body>
 </html>
