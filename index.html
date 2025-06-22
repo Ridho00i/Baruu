@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>✔️ Zation Digital Store</title>
+  <title>Zation Digital Store</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     * {
@@ -45,6 +45,7 @@
       text-align: center;
       padding: 30px 20px;
       animation: fadeIn 2s ease;
+      position: relative;
     }
 
     @keyframes fadeIn {
@@ -62,23 +63,57 @@
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
     }
 
-    h1 { font-size: 28px; }
+    h1 {
+      font-size: 28px;
+      display: inline-block;
+      position: relative;
+    }
+
+    h1 .checkmark {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 8px;
+    }
+
     p { color: #ccc; }
 
+    /* Hamburger Menu */
+    .menu-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 30px;
+      color: #00d2ff;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
     nav {
-      text-align: center;
-      margin: 20px 0;
+      display: none;
+      flex-direction: column;
+      background-color: rgba(0, 0, 0, 0.8);
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      padding: 15px;
+      border-radius: 10px;
     }
 
     nav a {
       color: #00d2ff;
-      margin: 0 15px;
+      margin: 10px 0;
       text-decoration: none;
       font-weight: bold;
     }
 
     nav a:hover {
       color: #2ee59d;
+    }
+
+    .nav-open {
+      display: flex;
     }
 
     .products {
@@ -153,6 +188,24 @@
       box-shadow: 0 0 10px #00d2ff;
       z-index: 1000;
     }
+
+    @media (min-width: 768px) {
+      nav {
+        display: flex !important;
+        flex-direction: row;
+        position: static;
+        background: none;
+        justify-content: center;
+      }
+
+      nav a {
+        margin: 0 15px;
+      }
+
+      .menu-toggle {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -167,17 +220,27 @@
 
   <!-- Header -->
   <header>
-    <img src="https://files.catbox.moe/vlf9nx.jpg" alt="Foto Profil" class="profile-img" />
-    <h1>Zation Digital Store</h1>
+    <img src="https://i.postimg.cc/YqM8cX09/profile.jpg" alt="Foto Profil" class="profile-img" />
+    <h1>
+      Zation Digital Store
+      <span class="checkmark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#00BFFF" viewBox="0 0 16 16">
+          <path d="M13.485 1.929a.75.75 0 0 1 1.06 1.06l-8.25 8.25a.75.75 0 0 1-1.06 0l-4.25-4.25a.75.75 0 1 1 1.06-1.06L6 9.189l7.485-7.26z"/>
+        </svg>
+      </span>
+    </h1>
     <p>Jual Produk Digital seperti eBook, Template, dan Preset</p>
-  </header>
 
-  <!-- Navigasi -->
-  <nav>
-    <a href="#produk">Produk</a>
-    <a href="#tentang">Tentang</a>
-    <a href="#kontak">Kontak</a>
-  </nav>
+    <!-- Tombol Hamburger -->
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+    <!-- Navigasi -->
+    <nav id="navMenu">
+      <a href="#produk">Produk</a>
+      <a href="#tentang">Tentang</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
+  </header>
 
   <!-- Produk -->
   <section id="produk" class="products">
@@ -222,7 +285,7 @@
     &copy; 2025 Zation Store. Semua Hak Dilindungi.
   </footer>
 
-  <!-- Script Musik -->
+  <!-- Script Musik & Hamburger -->
   <script>
     const music = document.getElementById("bg-music");
     const toggleBtn = document.getElementById("musicToggle");
@@ -238,6 +301,11 @@
       }
       isPlaying = !isPlaying;
     });
+
+    function toggleMenu() {
+      const nav = document.getElementById("navMenu");
+      nav.classList.toggle("nav-open");
+    }
   </script>
 </body>
 </html>
