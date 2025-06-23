@@ -45,16 +45,18 @@
       50% { opacity: 0.5; }
     }
 
-    .topup-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    .topup-scroll {
+      display: flex;
+      overflow-x: auto;
       gap: 20px;
       padding: 20px;
       width: 100%;
-      max-width: 1000px;
+      scroll-snap-type: x mandatory;
     }
 
     .topup-card {
+      flex: 0 0 auto;
+      scroll-snap-align: center;
       background: rgba(255, 255, 255, 0.1);
       padding: 20px;
       border-radius: 15px;
@@ -64,6 +66,7 @@
       transition: transform 0.3s ease;
       cursor: pointer;
       position: relative;
+      width: 220px;
     }
 
     .topup-card:hover {
@@ -114,6 +117,13 @@
       font-size: 14px;
       color: #ccc;
     }
+
+    .instruction {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 13px;
+      color: #aaa;
+    }
   </style>
 </head>
 <body>
@@ -125,7 +135,8 @@
     <div class="neon-border">Live Mode: ON</div>
   </header>
 
-  <div class="topup-container">
+  <div class="instruction">Geser ke kanan / kiri untuk melihat semua produk</div>
+  <div class="topup-scroll">
     <div class="topup-card" onclick="playSound()">
       <div class="glow-tag">🔥 Best Deal</div>
       <h2>Diamond ML - 86</h2>
