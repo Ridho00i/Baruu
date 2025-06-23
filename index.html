@@ -1,151 +1,101 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Top Up Game - Elegan</title>
+  <title>Top Up - Pilihan Pembayaran</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-      color: white;
-      text-align: center;
+      background: #f0f2f5;
       padding: 40px 20px;
+      text-align: center;
     }
     h1 {
-      font-size: 32px;
       margin-bottom: 10px;
     }
-    p {
+    select, button {
+      padding: 10px;
       font-size: 16px;
-      opacity: 0.8;
+      margin-top: 20px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
     }
-    .payment-buttons {
-      margin: 40px auto;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
+    #paymentInfo {
+      margin-top: 20px;
+      display: none;
     }
-    .payment-option {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 20px;
-      border-radius: 12px;
-      width: 220px;
-      backdrop-filter: blur(6px);
-      box-shadow: 0 0 12px rgba(0,0,0,0.3);
-    }
-    .payment-option h3 {
+    #paymentInfo p {
+      font-size: 18px;
       margin-bottom: 10px;
-      font-size: 20px;
     }
     .copy-btn {
-      background: #00d2ff;
-      color: black;
+      background: #00b894;
+      color: white;
       border: none;
-      padding: 8px 12px;
+      padding: 10px 20px;
       font-size: 14px;
       border-radius: 6px;
       cursor: pointer;
-      margin-top: 10px;
     }
     .copy-btn:hover {
-      background: #00a8cc;
+      background: #019070;
     }
-    #qrisModal {
+    #qrisImage {
+      max-width: 300px;
+      margin-top: 20px;
       display: none;
-      position: fixed;
-      z-index: 999;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.7);
-    }
-    #qrisModalContent {
-      margin: 100px auto;
-      padding: 20px;
-      background: white;
-      width: 90%;
-      max-width: 400px;
-      border-radius: 12px;
-      text-align: center;
-      color: black;
-    }
-    #qrisModalContent img {
-      width: 100%;
       border-radius: 10px;
-      margin-bottom: 15px;
-    }
-    .close-btn {
-      background: crimson;
-      color: white;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    .close-btn:hover {
-      background: darkred;
     }
   </style>
 </head>
 <body>
 
-  <h1>Top Up Game Elegan</h1>
-  <p>Pilih metode pembayaran di bawah ini:</p>
+  <h1>Pilih Metode Pembayaran</h1>
 
-  <div class="payment-buttons">
-    <div class="payment-option">
-      <h3>QRIS</h3>
-      <button class="copy-btn" onclick="showQRIS()">Tampilkan QR</button>
-    </div>
-    <div class="payment-option">
-      <h3>Dana</h3>
-      <p id="danaNum">081234567890</p>
-      <button class="copy-btn" onclick="copyText('danaNum')">Salin</button>
-    </div>
-    <div class="payment-option">
-      <h3>OVO</h3>
-      <p id="ovoNum">081234567891</p>
-      <button class="copy-btn" onclick="copyText('ovoNum')">Salin</button>
-    </div>
-    <div class="payment-option">
-      <h3>ShopeePay</h3>
-      <p id="spayNum">081234567892</p>
-      <button class="copy-btn" onclick="copyText('spayNum')">Salin</button>
-    </div>
+  <select id="paymentSelect" onchange="showPayment()">
+    <option value="" disabled selected>Pilih Metode</option>
+    <option value="dana">Dana - 081234567890</option>
+    <option value="ovo">OVO - 081234567891</option>
+    <option value="spay">ShopeePay - 081234567892</option>
+    <option value="qris">QRIS</option>
+  </select>
+
+  <div id="paymentInfo">
+    <p id="paymentText"></p>
+    <button class="copy-btn" onclick="copyPayment()">Salin</button>
   </div>
 
-  <!-- Modal QRIS -->
-  <div id="qrisModal">
-    <div id="qrisModalContent">
-      <h3>Scan QRIS</h3>
-      <img src="https://files.catbox.moe/vlf9nx.jpg" alt="QRIS Image"/>
-      <br>
-      <button class="close-btn" onclick="closeQRIS()">Tutup</button>
-    </div>
-  </div>
+  <img id="qrisImage" src="https://files.catbox.moe/vlf9nx.jpg" alt="QRIS" />
 
   <script>
-    function showQRIS() {
-      document.getElementById('qrisModal').style.display = 'block';
-    }
-    function closeQRIS() {
-      document.getElementById('qrisModal').style.display = 'none';
-    }
-    function copyText(id) {
-      const text = document.getElementById(id).textContent;
-      navigator.clipboard.writeText(text).then(() => {
-        alert('Nomor berhasil disalin: ' + text);
-      });
-    }
-    window.onclick = function(event) {
-      const modal = document.getElementById('qrisModal');
-      if (event.target === modal) {
-        modal.style.display = "none";
+    function showPayment() {
+      const select = document.getElementById("paymentSelect").value;
+      const info = document.getElementById("paymentInfo");
+      const text = document.getElementById("paymentText");
+      const qris = document.getElementById("qrisImage");
+
+      info.style.display = "block";
+      qris.style.display = "none";
+
+      if (select === "dana") {
+        text.textContent = "Dana: 081234567890";
+      } else if (select === "ovo") {
+        text.textContent = "OVO: 081234567891";
+      } else if (select === "spay") {
+        text.textContent = "ShopeePay: 081234567892";
+      } else if (select === "qris") {
+        info.style.display = "none";
+        qris.style.display = "block";
       }
+    }
+
+    function copyPayment() {
+      const text = document.getElementById("paymentText").textContent.split(": ")[1];
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Nomor berhasil disalin: " + text);
+      });
     }
   </script>
 
