@@ -3,65 +3,87 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Jualan Top Up - QRIS Payment</title>
+  <title>Top Up Game - Elegan</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f0f2f5;
-      padding: 20px;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: white;
       text-align: center;
+      padding: 40px 20px;
     }
     h1 {
-      color: #333;
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 16px;
+      opacity: 0.8;
     }
     .payment-buttons {
-      margin: 30px 0;
+      margin: 40px auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
     }
-    .payment-buttons button {
-      padding: 12px 20px;
-      margin: 10px;
-      font-size: 16px;
+    .payment-option {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 12px;
+      width: 220px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 0 12px rgba(0,0,0,0.3);
+    }
+    .payment-option h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+    .copy-btn {
+      background: #00d2ff;
+      color: black;
       border: none;
-      background-color: #00b894;
-      color: white;
+      padding: 8px 12px;
+      font-size: 14px;
       border-radius: 6px;
       cursor: pointer;
+      margin-top: 10px;
     }
-    .payment-buttons button:hover {
-      background-color: #019070;
+    .copy-btn:hover {
+      background: #00a8cc;
     }
     #qrisModal {
       display: none;
       position: fixed;
       z-index: 999;
-      padding-top: 100px;
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
       overflow: auto;
-      background-color: rgba(0,0,0,0.6);
+      background-color: rgba(0,0,0,0.7);
     }
     #qrisModalContent {
-      background-color: white;
-      margin: auto;
+      margin: 100px auto;
       padding: 20px;
-      border-radius: 10px;
+      background: white;
       width: 90%;
       max-width: 400px;
+      border-radius: 12px;
       text-align: center;
+      color: black;
     }
     #qrisModalContent img {
       width: 100%;
       border-radius: 10px;
+      margin-bottom: 15px;
     }
     .close-btn {
       background: crimson;
       color: white;
       padding: 8px 16px;
-      margin-top: 10px;
       border: none;
-      border-radius: 5px;
+      border-radius: 6px;
       cursor: pointer;
     }
     .close-btn:hover {
@@ -71,22 +93,37 @@
 </head>
 <body>
 
-  <h1>Top Up Game Sekarang</h1>
+  <h1>Top Up Game Elegan</h1>
   <p>Pilih metode pembayaran di bawah ini:</p>
 
   <div class="payment-buttons">
-    <button onclick="showQRIS()">QRIS</button>
-    <button onclick="alert('Silakan transfer ke Dana: 08xxxx')">Dana</button>
-    <button onclick="alert('Silakan transfer ke OVO: 08xxxx')">OVO</button>
-    <button onclick="alert('Silakan transfer ke ShopeePay: 08xxxx')">ShopeePay</button>
+    <div class="payment-option">
+      <h3>QRIS</h3>
+      <button class="copy-btn" onclick="showQRIS()">Tampilkan QR</button>
+    </div>
+    <div class="payment-option">
+      <h3>Dana</h3>
+      <p id="danaNum">081234567890</p>
+      <button class="copy-btn" onclick="copyText('danaNum')">Salin</button>
+    </div>
+    <div class="payment-option">
+      <h3>OVO</h3>
+      <p id="ovoNum">081234567891</p>
+      <button class="copy-btn" onclick="copyText('ovoNum')">Salin</button>
+    </div>
+    <div class="payment-option">
+      <h3>ShopeePay</h3>
+      <p id="spayNum">081234567892</p>
+      <button class="copy-btn" onclick="copyText('spayNum')">Salin</button>
+    </div>
   </div>
 
   <!-- Modal QRIS -->
   <div id="qrisModal">
     <div id="qrisModalContent">
-      <h3>Silakan Scan QRIS</h3>
-      <img src="main.jpg" alt="QRIS Code" />
-      <br />
+      <h3>Scan QRIS</h3>
+      <img src="https://files.catbox.moe/vlf9nx.jpg" alt="QRIS Image"/>
+      <br>
       <button class="close-btn" onclick="closeQRIS()">Tutup</button>
     </div>
   </div>
@@ -95,16 +132,19 @@
     function showQRIS() {
       document.getElementById('qrisModal').style.display = 'block';
     }
-
     function closeQRIS() {
       document.getElementById('qrisModal').style.display = 'none';
     }
-
-    // Tutup modal jika diklik di luar kotak
+    function copyText(id) {
+      const text = document.getElementById(id).textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Nomor berhasil disalin: ' + text);
+      });
+    }
     window.onclick = function(event) {
       const modal = document.getElementById('qrisModal');
       if (event.target === modal) {
-        modal.style.display = \"none\";
+        modal.style.display = "none";
       }
     }
   </script>
