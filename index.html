@@ -2,470 +2,194 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Zation Digital Store</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Top Up Game Modern</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-
     body {
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: #fff;
-      scroll-behavior: smooth;
-    }
-
-    #loading {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: #000;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      animation: fadeOut 2s ease forwards;
-      animation-delay: 1.5s;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1f1c2c, #928DAB);
       color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
     }
-
-    @keyframes fadeOut {
-      to {
-        opacity: 0;
-        visibility: hidden;
-      }
-    }
-
     header {
       text-align: center;
-      padding: 30px 20px;
-      animation: fadeIn 2s ease;
-      position: relative;
-      background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(0,0,0,0.1));
-      background-attachment: fixed;
-    }
-
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(-20px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
-
-    .profile-img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid #fff;
-      margin-bottom: 15px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-    }
-
-    h1 {
-      font-size: 28px;
-      display: inline-block;
+      padding: 30px 20px 10px;
       position: relative;
     }
-
-    h1 .checkmark {
-      display: inline-block;
-      vertical-align: middle;
-      margin-left: 8px;
-    }
-
-    h1 .checkmark svg:hover {
-      filter: drop-shadow(0 0 6px #00bfff);
-      transition: 0.3s ease;
-    }
-
-    p { color: #ccc; }
-
-    .menu-toggle {
+    .neon-border {
       position: absolute;
       top: 20px;
       right: 20px;
-      background: none;
-      border: none;
-      font-size: 30px;
-      color: #00d2ff;
-      cursor: pointer;
-      z-index: 1001;
-    }
-
-    nav {
-      display: none;
-      flex-direction: column;
-      background-color: rgba(0, 0, 0, 0.8);
-      position: absolute;
-      top: 60px;
-      right: 20px;
-      padding: 15px;
-      border-radius: 10px;
-    }
-
-    nav a {
-      color: #00d2ff;
-      margin: 10px 0;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      color: #2ee59d;
-    }
-
-    .nav-open {
-      display: flex;
-    }
-
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 40px 20px;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 20px;
-      border-radius: 15px;
-      backdrop-filter: blur(10px);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-    }
-
-    .card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 10px;
-    }
-
-    .buy-btn {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 10px 15px;
-      background: #00d2ff;
-      color: #000;
-      border: none;
+      background: rgba(255,255,255,0.1);
+      padding: 5px 10px;
+      border: 2px solid #00ffc8;
       border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s ease;
+      font-size: 12px;
+      animation: flicker 2s infinite;
     }
-
-    .buy-btn:hover {
-      background: #2ee59d;
+    @keyframes flicker {
+      0%, 100% {opacity: 1;} 50% {opacity: 0.5;}
     }
-
-    section {
-      padding: 40px 20px;
-      animation: fadeIn 2s ease;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.05);
-      font-size: 14px;
-    }
-
-    #musicToggle {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #00d2ff;
-      color: #000;
-      border: none;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      font-size: 20px;
-      cursor: pointer;
-      box-shadow: 0 0 10px #00d2ff;
-      z-index: 1000;
-    }
-
-    @media (min-width: 768px) {
-      nav {
-        display: flex !important;
-        flex-direction: row;
-        position: static;
-        background: none;
-        justify-content: center;
-      }
-
-      nav a {
-        margin: 0 15px;
-      }
-
-      .menu-toggle {
-        display: none;
-      }
-    }
-
-    @keyframes fadeOut {
-      to {
-        opacity: 0;
-        visibility: hidden;
-      }
-    }
-
-    .product-slider {
+    .topup-scroll {
       display: flex;
       overflow-x: auto;
-      gap: 16px;
+      gap: 20px;
       padding: 20px;
       scroll-snap-type: x mandatory;
+      width: 100%;
     }
-
-    .product-slider::-webkit-scrollbar {
-      display: none;
-    }
-
-    .slider-card {
+    .topup-card {
       flex: 0 0 auto;
-      width: 250px;
-      background: rgba(255, 255, 255, 0.1);
+      scroll-snap-align: center;
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
       border-radius: 15px;
+      text-align: center;
       backdrop-filter: blur(10px);
-      padding: 15px;
-      scroll-snap-align: start;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      width: 200px;
       position: relative;
     }
-
+    .topup-card:hover { transform: scale(1.05); }
+    .topup-card h2 { font-size: 18px; }
+    .price { color: #00ffcc; margin: 10px 0; font-weight: bold; }
+    .btn, .checkout-btn {
+      background: #00ffcc;
+      color: #000;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .btn:hover, .checkout-btn:hover { background: #00ccaa; }
     .glow-tag {
       position: absolute;
       top: 10px;
       left: 10px;
-      background: #00d2ff;
-      color: #000;
-      padding: 4px 10px;
-      border-radius: 8px;
+      background: #ff4ecd;
+      padding: 3px 8px;
       font-size: 12px;
+      border-radius: 5px;
+      box-shadow: 0 0 8px #ff4ecd;
       font-weight: bold;
-      box-shadow: 0 0 10px #00d2ff;
     }
-
-    .slider-card img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
+    .form-section {
+      padding: 20px;
+      width: 90%;
+      max-width: 500px;
+      background: rgba(255,255,255,0.1);
+      margin-top: 20px;
       border-radius: 10px;
-      margin-bottom: 10px;
+      backdrop-filter: blur(8px);
     }
-
-    .slider-card h4 {
-      margin: 5px 0;
-    }
-
-    .buy-btn {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 10px 15px;
-      background: #00d2ff;
-      color: #000;
+    .form-section input, .form-section select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
       border: none;
       border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s ease;
     }
-
-    .buy-btn:hover {
-      background: #2ee59d;
-    }
-
-    section {
-      padding: 40px 20px;
-      animation: fadeIn 2s ease;
-    }
-
     footer {
-      text-align: center;
+      margin-top: auto;
       padding: 20px;
-      background: rgba(255, 255, 255, 0.05);
       font-size: 14px;
-    }
-
-    #musicToggle {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #00d2ff;
-      color: #000;
-      border: none;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      font-size: 20px;
-      cursor: pointer;
-      box-shadow: 0 0 10px #00d2ff;
-      z-index: 1000;
-    }
-
-    @media (min-width: 768px) {
-      nav {
-        display: flex !important;
-        flex-direction: row;
-        position: static;
-        background: none;
-        justify-content: center;
-      }
-
-      nav a {
-        margin: 0 15px;
-      }
-
-      .menu-toggle {
-        display: none;
-      }
+      color: #ccc;
     }
   </style>
 </head>
 <body>
-  <div id="loading">Memuat Toko...</div>
+<audio id="clickSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_cdc14a67a1.mp3?filename=button-124476.mp3"></audio>
 
-  <audio id="bg-music" autoplay loop>
-    <source src="https://files.catbox.moe/tfgcnz.mp3" type="audio/mpeg">
-    Browser tidak mendukung audio
-  </audio>
-  <button id="musicToggle">🔊</button>
+<header>
+  <h1>Top Up Game Favorit Kamu</h1>
+  <p>Pilih jumlah, isi ID, dan bayar secara instan!</p>
+  <div class="neon-border">Live Mode: ON</div>
+</header>
 
-  <header>
-    <img src="https://files.catbox.moe/vlf9nx.jpg" alt="Foto Profil" class="profile-img" />
-    <h1>
-      Fufufafa Kocak
-      <span class="checkmark">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="#1DA1F2" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;">
-          <path d="M22.25 12c0 1.12-.62 2.13-1.59 2.64.16 1.05-.14 2.15-.92 2.93-.78.78-1.88 1.08-2.93.92A3.003 3.003 0 0 1 12 22.25a3.003 3.003 0 0 1-2.81-2.76c-1.05.16-2.15-.14-2.93-.92-.78-.78-1.08-1.88-.92-2.93A3.003 3.003 0 0 1 1.75 12c0-1.12.62-2.13 1.59-2.64a3.003 3.003 0 0 1 2.76-2.81c-.16-1.05.14-2.15.92-2.93.78-.78 1.88-1.08 2.93-.92A3.003 3.003 0 0 1 12 1.75c1.12 0 2.13.62 2.64 1.59.75-.14 1.55.05 2.15.47.83.61 1.24 1.63 1.08 2.64.98.27 1.78.92 2.3 1.8.39.62.58 1.33.58 2.05zM10.21 16.29l6.29-6.29-1.41-1.41-4.88 4.88-2.12-2.12-1.41 1.41 3.53 3.53z"/>
-        </svg>
-      </span>
-    </h1>
-    <p>Jual Produk Digital seperti Script Bot, Nomor Kosong, dan Jasa Tambah Fitur</p>
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-    <nav id="navMenu">
-      <a href="#produk">Produk</a>
-      <a href="#tentang">Tentang</a>
-      <a href="#kontak">Kontak</a>
-    </nav>
-  </header>
-
-  <section id="produk" class="products">
-    <div class="card">
-      <img src="https://files.catbox.moe/vlf9nx.jpg" alt="eBook" />
-      <h3>eBook Bisnis Online</h3>
-      <p>Jasa Tambah Fitur Script Bot Murah</p>
-      <a href="#" class="buy-btn">Beli Sekarang</a>
-    </div>
-    <div class="card">
-      <img src="https://files.catbox.moe/vlf9nx.jpg" alt="Preset" />
-      <h3>Lightroom Preset</h3>
-      <p>Edit foto instan dengan hasil estetik!</p>
-      <a href="#" class="buy-btn">Beli Sekarang</a>
-    </div>
-    <div class="card">
-      <img src="https://files.catbox.moe/vlf9nx.jpg" alt="Template" />
-      <h3>Template Instagram</h3>
-      <p>Template promosi untuk feed profesional.</p>
-      <a href="#" class="buy-btn">Beli Sekarang</a>
-    </div>
-  </section>
-  
-  <!-- Bagian produk baru yang bisa digeser -->
-<section>
-  <h2 style="text-align:center; margin-bottom: 10px;">Produk Terbaru</h2>
-  <div class="product-slider">
-    <div class="slider-card">
-      <span class="glow-tag">Baru!</span>
-      <img src="https://files.catbox.moe/vlf9nx.jpg" alt="Produk 1" />
-      <h4>eBook Masterclass</h4>
-      <p>Strategi digital mendalam dari pakar industri.</p>
-      <a href="#" class="buy-btn">Beli</a>
-    </div>
-    <div class="slider-card">
-      <span class="glow-tag">Baru!</span>
-      <img src="https://files.catbox.moe/vlf9nx.jpg" alt="Produk 2" />
-      <h4>Bundle Preset Premium</h4>
-      <p>Lebih dari 50 preset untuk foto estetik.</p>
-      <a href="#" class="buy-btn">Beli</a>
-    </div>
-    <div class="slider-card">
-      <span class="glow-tag">Baru!</span>
-      <img src="https://files.catbox.moe/vlf9nx.jpg" alt="Produk 3" />
-      <h4>Template Bisnis Canva</h4>
-      <p>Desain siap pakai untuk promosi.</p>
-      <a href="#" class="buy-btn">Beli</a>
-    </div>
+<div class="topup-scroll" id="product-list">
+  <div class="topup-card" onclick="selectProduct('Diamond ML - 86', 20000)">
+    <div class="glow-tag">🔥 Best Deal</div>
+    <h2>Diamond ML - 86</h2>
+    <div class="price">Rp20.000</div>
+    <button class="btn">Pilih</button>
   </div>
-</section>
+  <div class="topup-card" onclick="selectProduct('UC PUBG - 300', 50000)">
+    <h2>UC PUBG - 300</h2>
+    <div class="price">Rp50.000</div>
+    <button class="btn">Pilih</button>
+  </div>
+  <div class="topup-card" onclick="selectProduct('Genesis Crystal - 300', 60000)">
+    <div class="glow-tag">⭐ Populer</div>
+    <h2>Genesis Crystal - 300</h2>
+    <div class="price">Rp60.000</div>
+    <button class="btn">Pilih</button>
+  </div>
+  <div class="topup-card" onclick="selectProduct('Free Fire Diamond - 100', 15000)">
+    <h2>Free Fire Diamond - 100</h2>
+    <div class="price">Rp15.000</div>
+    <button class="btn">Pilih</button>
+  </div>
+</div>
 
-  <section id="tentang">
-    <h2 style="text-align:center;">Tentang Kami</h2>
-    <p style="text-align:center; color: #ccc; max-width: 600px; margin: 10px auto;">
-      Kami adalah penyedia produk digital terpercaya yang siap membantu Anda sukses secara online. Semua produk kami bisa langsung diunduh dan digunakan!
-    </p>
-  </section>
+<div class="form-section">
+  <h3>Formulir Top Up</h3>
+  <input type="text" id="playerId" placeholder="Masukkan ID Player">
+  <input type="text" id="serverId" placeholder="Masukkan Server (opsional)">
+  <select id="paymentMethod">
+    <option disabled selected>Pilih Metode Pembayaran</option>
+    <option value="Dana">Dana</option>
+    <option value="OVO">OVO</option>
+    <option value="GoPay">GoPay</option>
+    <option value="ShopeePay">ShopeePay</option>
+    <option value="QRIS">QRIS</option>
+  </select>
+  <button class="checkout-btn" onclick="checkout()">Checkout via WhatsApp</button>
+</div>
 
-  <section id="kontak">
-    <h2 style="text-align:center;">Kontak</h2>
-    <p style="text-align:center; color: #ccc;">
-      Hubungi kami di WhatsApp: <a href="https://wa.me/6281234567890" target="_blank" style="color:#00d2ff;">Klik di sini</a>
-    </p>
-  </section>
+<footer>
+  &copy; 2025 Zation TopUp Store. Semua Hak Dilindungi.
+</footer>
 
-  <footer>
-    &copy; 2025 Zation Store. Semua Hak Dilindungi.
-  </footer>
+<script>
+  let selectedProduct = '';
+  let selectedPrice = 0;
 
-  <!-- Fitur Tambahan -->
-  <div id="toast" style="position: fixed; top: 20px; right: 20px; background: #00d2ff; color: #000; padding: 10px 20px; border-radius: 8px; font-weight: bold; z-index: 9999; box-shadow: 0 0 10px #00d2ff; display: none;">Selamat datang di Zation Store!</div>
-  <a href="https://wa.me/6281234567890" target="_blank" style="position: fixed; bottom: 90px; right: 20px; background-color: #25D366; color: white; border-radius: 50%; width: 55px; height: 55px; display: flex; justify-content: center; align-items: center; font-size: 26px; box-shadow: 0 0 10px #25D366; z-index: 1000; text-decoration: none;">💬</a>
-  <button id="themeToggle" style="position: fixed; bottom: 155px; right: 20px; background: #ffcc00; color: #000; border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 20px; cursor: pointer; box-shadow: 0 0 10px #ffcc00; z-index: 1000;">🌙</button>
+  function playSound() {
+    const sound = document.getElementById(\"clickSound\");
+    sound.currentTime = 0;
+    sound.play();
+  }
 
-  <script>
-    const music = document.getElementById("bg-music");
-    const toggleBtn = document.getElementById("musicToggle");
-    let isPlaying = true;
-    toggleBtn.addEventListener("click", () => {
-      if (isPlaying) {
-        music.pause();
-        toggleBtn.textContent = "🔇";
-      } else {
-        music.play();
-        toggleBtn.textContent = "🔊";
-      }
-      isPlaying = !isPlaying;
-    });
+  function selectProduct(name, price) {
+    selectedProduct = name;
+    selectedPrice = price;
+    playSound();
+    alert('Dipilih: ' + name + ' - Rp' + price.toLocaleString());
+  }
 
-    function toggleMenu() {
-      const nav = document.getElementById("navMenu");
-      nav.classList.toggle("nav-open");
+  function checkout() {
+    const id = document.getElementById(\"playerId\").value;
+    const server = document.getElementById(\"serverId\").value;
+    const method = document.getElementById(\"paymentMethod\").value;
+
+    if (!selectedProduct || !id || !method) {
+      alert(\"Harap lengkapi data dan pilih produk!\");
+      return;
     }
 
-    window.addEventListener("load", () => {
-      const toast = document.getElementById("toast");
-      toast.style.display = "block";
-      setTimeout(() => toast.style.display = "none", 3000);
-    });
+    const pesan = `Saya ingin Top Up:%0A- Produk: ${selectedProduct}%0A- Harga: Rp${selectedPrice.toLocaleString()}%0A- ID: ${id} ${server ? '(Server ' + server + ')' : ''}%0A- Pembayaran: ${method}`;
+    window.open(`https://wa.me/YOUR_PHONE_NUMBER?text=${pesan}`, '_blank');
+  }
+</script>
 
-    const themeBtn = document.getElementById("themeToggle");
-    let darkMode = true;
-    themeBtn.addEventListener("click", () => {
-      document.body.style.background = darkMode ? "#f1f1f1" : "linear-gradient(135deg, #0f2027, #203a43, #2c5364)";
-      document.body.style.color = darkMode ? "#000" : "#fff";
-      themeBtn.textContent = darkMode ? "☀️" : "🌑";
-      darkMode = !darkMode;
-    });
-  </script>
 </body>
 </html>
